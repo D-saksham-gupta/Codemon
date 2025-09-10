@@ -8,9 +8,9 @@ require("dotenv").config();
 exports.auth = async (req, res, next) => {
   try {
     const token =
+      req.header("Authorization")?.replace("Bearer ", "") ||
       req.cookies.token ||
-      req.body.token ||
-      req.header("Authorisation").replace("Bearer ", "");
+      req.body.token;
 
     if (!token) {
       return res.status(401).json({
@@ -18,8 +18,6 @@ exports.auth = async (req, res, next) => {
         message: "Token missing",
       });
     }
-
-    //verify the token
 
     try {
       const decode = await jwt.verify(token, process.env.JWT_SECRET);
@@ -31,9 +29,12 @@ exports.auth = async (req, res, next) => {
         message: "token is invalid",
       });
     }
+
     next();
-  } catch {
-    return res.status(400).json({
+  } catch (error) {
+    // Added 'error' parameter here
+    console.log("Auth middleware error:", error); // Added logging for debugging
+    return res.status(500).json({
       success: false,
       message: "Something went wrong while validating the token",
     });

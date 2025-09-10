@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, matchPath, useLocation } from "react-router-dom";
-import logo from "../../assets/Logo/logo4.png";
+import logo from "../../assets/Logo/logo1.png";
 import { NavbarLinks } from "../../data/navbar-links";
 import { useSelector } from "react-redux";
 import { AiOutlineShoppingCart } from "react-icons/ai";
@@ -42,7 +42,7 @@ const Navbar = () => {
     <div className="flex h-20 relative items-center justify-center border-b-[1px] border-b-richblack-300">
       <div className="flex w-11/12 sticky max-w-maxContent items-center justify-between">
         <Link to={"/"}>
-          <img src={logo} alt="" width={160} height={50} />
+          <img src={logo} alt="" width={70} height={40} />
         </Link>
         {/* Adding nav links */}
         <nav>
