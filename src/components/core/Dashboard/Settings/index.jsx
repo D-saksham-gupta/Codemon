@@ -10,7 +10,7 @@ export default function Settings() {
       <Sidebar />
       <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto p-5">
         <h1 className="mb-14 text-3xl text-richblack-5 text-center font-inter font-bold bg-pink-800 p-3 ">
-          Edit Profile
+          Settings
         </h1>
         {/* Change Profile Picture */}
         <ChangeProfilePicture />

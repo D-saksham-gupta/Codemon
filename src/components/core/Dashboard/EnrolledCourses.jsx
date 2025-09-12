@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import ProgressBar from "@ramonak/react-progress-bar";
-import { BiDotsVerticalRounded } from "react-icons/bi";
+//import { BiDotsVerticalRounded } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import { getUserEnrolledCourses } from "../../../services/operations/profileAPI";
-import axios from "axios";
 import Sidebar from "./Sidebar";
 
 export default function EnrolledCourses() {
@@ -28,8 +27,10 @@ export default function EnrolledCourses() {
   return (
     <div className="relative flex min-h-[calc(100vh-3.5rem)]">
       <Sidebar />
-      <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto m-5">
-        <div className="text-3xl text-richblack-50">Enrolled Courses</div>
+      <div className="h-[calc(100vh-3.5rem)] flex-1 overflow-auto m-5 ">
+        <div className="text-3xl text-richblack-50 text-center font-inter font-bold bg-pink-800 p-3">
+          Enrolled Courses
+        </div>
 
         {!enrolledCourses ? (
           <div className="grid min-h-[calc(100vh-3.5rem)] place-items-center">

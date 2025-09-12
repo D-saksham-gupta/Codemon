@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 import useOnClickOutside from "../../../hooks/useOnClickOutside";
 import { logout } from "../../../services/operations/authAPI";
+import ConfirmationModal from "../../common/ConfirmationModal";
 
 export default function ProfileDropdown() {
   const { user } = useSelector((state) => state.profile);
@@ -13,6 +14,7 @@ export default function ProfileDropdown() {
   const navigate = useNavigate();
 
   const [open, setOpen] = useState(false);
+  const [confirmationModal, setConfirmationModal] = useState(null);
 
   const ref = useRef(null);
 
@@ -38,8 +40,18 @@ export default function ProfileDropdown() {
         >
           <button
             onClick={() => {
-              dispatch(logout(navigate));
-              //setOpen(false);
+              setConfirmationModal({
+                text1: "Are you sure?",
+                text2: "You will be logged out from the app",
+                btn1Text: "Logout",
+                btn2Text: "cancel",
+                btn1Handler: () => {
+                  dispatch(logout(navigate));
+                },
+                btn2Handler: () => {
+                  setConfirmationModal(null);
+                },
+              });
             }}
             className="flex w-full items-center gap-x-1 py-[10px] px-[12px] text-sm text-richblack-100 hover:bg-richblack-700 hover:text-richblack-25"
           >
@@ -54,6 +66,7 @@ export default function ProfileDropdown() {
           </Link>
         </div>
       )}
+      {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
     </button>
   );
 }

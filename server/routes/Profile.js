@@ -6,6 +6,8 @@ const {
   updateProfile,
   getUserDetails,
   getEnrolledCourses,
+  instructorDashboard,
+  updateDisplayPicture,
   //updateDisplayPicture,
   //getEnrolledCourses,
   //instructorDashboard,
@@ -20,7 +22,7 @@ router.put("/updateProfile", auth, updateProfile);
 router.get("/getUserDetails", auth, getUserDetails);
 // Get Enrolled Courses
 router.get("/getEnrolledCourses", auth, getEnrolledCourses);
-//router.put("/updateDisplayPicture", auth, updateDisplayPicture);
-//router.get("/instructorDashboard", auth, isInstructor, instructorDashboard);
+router.put("/updateDisplayPicture", auth, updateDisplayPicture);
+router.get("/instructorDashboard", auth, isInstructor, instructorDashboard);
 
 module.exports = router;

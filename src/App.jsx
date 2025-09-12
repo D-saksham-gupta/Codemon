@@ -16,6 +16,10 @@ import Settings from "./components/core/Dashboard/Settings";
 import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import Cart from "./components/core/Dashboard/Cart";
+import Instructor from "./components/core/Dashboard/InstructorDashboard/Instructor";
+import MyCourses from "./components/core/Dashboard/MyCourses";
+import PrivateRoute from "./components/core/Auth/PrivateRoute";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -71,7 +75,7 @@ function App() {
 
         {user?.accountType === ACCOUNT_TYPE.STUDENT && (
           <>
-            {/* <Route path="dashboard/cart" element={<Cart />} /> */}
+            <Route path="dashboard/cart" element={<Cart />} />
             <Route
               path="dashboard/enrolled-courses"
               element={<EnrolledCourses />}
@@ -79,19 +83,33 @@ function App() {
           </>
         )}
 
-        {/* {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
+        {user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
           <>
             <Route path="dashboard/instructor" element={<Instructor />} />
-            <Route path="dashboard/add-course" element={<AddCourse />} />
+            {/* <Route path="dashboard/add-course" element={<AddCourse />} /> */}
             <Route path="dashboard/my-courses" element={<MyCourses />} />
-            <Route
+            {/* <Route
               path="dashboard/edit-course/:courseId"
               element={<EditCourse />}
-            />
+            /> */}
           </>
-        )} */}
-        <Route path="/dashboard/settings" element={<Settings />} />
-        <Route path="/dashboard/my-profile" element={<MyProfile />} />
+        )}
+        <Route
+          path="/dashboard/settings"
+          element={
+            <PrivateRoute>
+              <Settings />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/dashboard/my-profile"
+          element={
+            <PrivateRoute>
+              <MyProfile />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );

@@ -43,7 +43,7 @@ export async function getUserEnrolledCourses(token) {
   let result = [];
   try {
     console.log("BEFORE Calling BACKEND API FOR ENROLLED COURSES");
-    console.log(token);
+
     const response = await apiConnector(
       "GET",
       GET_USER_ENROLLED_COURSES_API,
