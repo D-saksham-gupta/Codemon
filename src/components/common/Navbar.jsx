@@ -29,7 +29,7 @@ const Navbar = () => {
     (async () => {
       try {
         const res = await axios.get(
-          "http://localhost:4000/api/v1/course/showAllCategories"
+          "https://codemon-backend-0nfe.onrender.com/api/v1/course/showAllCategories"
         );
         setSubLinks(res.data.data);
       } catch (error) {
